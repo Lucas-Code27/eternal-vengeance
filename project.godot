@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 
 AudioManager="*res://Src/Globals/Audio_Manager.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 left={

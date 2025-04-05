@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=2 format=3 uid="uid://b87u6mpken5r7"]
+
+[ext_resource type="Script" uid="uid://d0ekklj0al525" path="res://Src/guns/gun_stats.gd" id="1_8r7v4"]
+
+[resource]
+script = ExtResource("1_8r7v4")
+cooldowntime = 0.5
+speed = 60
+damage = 3
+metadata/_custom_type_script = "uid://d0ekklj0al525"
