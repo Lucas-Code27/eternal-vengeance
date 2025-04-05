@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwcfbqicnppbs"]
+
+[ext_resource type="Script" path="res://Src/UI/settings_menu.gd" id="1_0elue"]
+[ext_resource type="Theme" path="res://Assets/UI_Theme.tres" id="2_nrlic"]
+[ext_resource type="PackedScene" uid="uid://v1bmqgsx5hji" path="res://Src/UI/Volume_Slider.tscn" id="3_oj84s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oj84s"]
+font_size = 64
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0elue")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 30.0
+offset_right = 124.0
+offset_bottom = 118.0
+grow_horizontal = 2
+theme = ExtResource("2_nrlic")
+text = "Settings"
+label_settings = SubResource("LabelSettings_oj84s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSlider" parent="Background" instance=ExtResource("3_oj84s")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -8.0
+offset_right = 90.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+bus_name = "Master"
+
+[node name="VolumeSlider2" parent="Background" instance=ExtResource("3_oj84s")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 32.0
+offset_right = 90.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+bus_name = "Music"
+
+[node name="VolumeSlider3" parent="Background" instance=ExtResource("3_oj84s")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 72.0
+offset_right = 90.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+bus_name = "Sound"
+
+[node name="Close" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme = ExtResource("2_nrlic")
+text = "X"
+
+[connection signal="pressed" from="Background/Close" to="." method="_on_close_pressed"]

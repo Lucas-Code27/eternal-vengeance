@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt1vayt1xblxj"]
+
+[ext_resource type="Script" uid="uid://d3tup8ql8v4kt" path="res://Src/Player/player.gd" id="1_ujskw"]
+[ext_resource type="Script" path="res://Src/Components/shooting_component_2d.gd" id="2_f70li"]
+[ext_resource type="PackedScene" uid="uid://dxo713ynsgnk2" path="res://Src/Player/Bullet.tscn" id="3_vr7rf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yvb5"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ujskw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8yvb5")
+
+[node name="Shootingcomp" type="Node2D" parent="."]
+position = Vector2(12, 0)
+script = ExtResource("2_f70li")
+projectile = ExtResource("3_vr7rf")
+
+[node name="cooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
