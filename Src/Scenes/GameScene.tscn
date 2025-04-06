@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccxd6togt4p40"]
+[gd_scene load_steps=11 format=3 uid="uid://ccxd6togt4p40"]
 
 [ext_resource type="Script" uid="uid://dmr7m0aejt1y6" path="res://Src/Scenes/game_scene.gd" id="1_efvuh"]
 [ext_resource type="PackedScene" uid="uid://bt1vayt1xblxj" path="res://Src/Player/Player.tscn" id="1_ybpm7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dmxryfkqqaued" path="res://Src/guns/shotgunpickup.tscn" id="6_efvuh"]
 [ext_resource type="Script" uid="uid://bejrhnyml61q6" path="res://Src/Scenes/enemy_spawner.gd" id="7_oyh4y"]
 [ext_resource type="PackedScene" uid="uid://bm7m4gv58w0rb" path="res://Src/Enemies/EnemyMelee.tscn" id="9_tmql2"]
+[ext_resource type="PackedScene" uid="uid://coe0fvvhcn6ug" path="res://Src/Enemies/EnemyRanged.tscn" id="10_cy7q1"]
 
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("spawner")]
 script = ExtResource("1_efvuh")
@@ -36,4 +37,4 @@ position = Vector2(6, -60)
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(110, -88)
 script = ExtResource("7_oyh4y")
-enemies = Array[PackedScene]([ExtResource("9_tmql2")])
+enemies = Array[PackedScene]([ExtResource("9_tmql2"), ExtResource("10_cy7q1")])

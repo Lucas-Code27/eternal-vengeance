@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var shooter:ShootingComponent2D = $Pivot/Shootingcomp
+@onready var health:HealthComponent = $HealthComponent
 @onready var cooldown:Timer = $cooldown
 @onready var pivot:Node2D = $Pivot
 
@@ -24,6 +25,11 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
+	
+	if direction.x > 0:
+		$Sprite2D.flip_h = false
+	elif direction.x < 0:
+		$Sprite2D.flip_h = true
 	
 	move_and_slide()
 	pivot.look_at(get_global_mouse_position())

@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://coe0fvvhcn6ug"]
+
+[ext_resource type="Script" uid="uid://dkiwhqxys32oo" path="res://Src/Enemies/enemy_ranged.gd" id="1_pav6e"]
+[ext_resource type="Texture2D" uid="uid://bd6ar3vynulue" path="res://Assets/Art/enemy.png" id="1_t8emo"]
+[ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="3_xvs6b"]
+[ext_resource type="Script" uid="uid://b85wfj2cbgrmj" path="res://Src/Components/shooting_component_2d.gd" id="4_oywnl"]
+[ext_resource type="PackedScene" uid="uid://cfli885adll14" path="res://Src/Enemies/enemybullet.tscn" id="5_sbpuo"]
+[ext_resource type="Script" uid="uid://d0ekklj0al525" path="res://Src/guns/gun_stats.gd" id="6_26488"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pav6e"]
+size = Vector2(5, 6)
+
+[sub_resource type="Animation" id="Animation_pcnsx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cjvt4"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihsi0"]
+_data = {
+&"RESET": SubResource("Animation_pcnsx"),
+&"run": SubResource("Animation_cjvt4")
+}
+
+[sub_resource type="Resource" id="Resource_64po6"]
+script = ExtResource("6_26488")
+cooldowntime = 0.75
+speed = 3
+damage = 2
+spread = 0.0
+bullet_amnt = 1
+pierce = 1
+metadata/_custom_type_script = "uid://d0ekklj0al525"
+
+[node name="EnemyRanged" type="Area2D" node_paths=PackedStringArray("shooter")]
+collision_mask = 3
+script = ExtResource("1_pav6e")
+shooter = NodePath("Node2D/ShootingComponent2D")
+followdist = 150
+speed = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_pav6e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t8emo")
+hframes = 3
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_xvs6b")
+Max_Health = 8
+metadata/_custom_type_script = "uid://4m8k3ln0731x"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ihsi0")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ShootingComponent2D" type="Node2D" parent="Node2D" node_paths=PackedStringArray("parent")]
+position = Vector2(4, 0)
+script = ExtResource("4_oywnl")
+projectile = ExtResource("5_sbpuo")
+stats = SubResource("Resource_64po6")
+parent = NodePath("../..")
+metadata/_custom_type_script = "uid://b85wfj2cbgrmj"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

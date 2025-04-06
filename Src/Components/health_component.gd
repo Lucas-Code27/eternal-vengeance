@@ -3,6 +3,7 @@ class_name HealthComponent
 
 # Signals
 signal Die
+signal Hit
 
 # Vars
 @export_group("Stats")
@@ -20,6 +21,7 @@ func Hurt(damage:int) -> void:
 		return
 	
 	Health -= damage
+	Hit.emit()
 	
 	# Checking for death
 	if Health <= 0:

@@ -13,11 +13,8 @@ func _physics_process(_delta: float) -> void:
 	global_position += direction * speed
 
 func _on_body_entered(body: Node2D) -> void:
-	while pierce > 0:
-		if body.has_node("HealthComponent"):
-			body.get_node("HealthComponent").Hurt(damage)
-		
-		pierce -= 1
+	if body.has_node("HealthComponent"):
+		body.get_node("HealthComponent").Hurt(damage)
 	
 	queue_free()
 
@@ -29,5 +26,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.has_node("HealthComponent"):
 		area.get_node("HealthComponent").Hurt(damage)
-	
+		
 	queue_free()

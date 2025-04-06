@@ -22,6 +22,8 @@ Play = NodePath("ButtonHolder/Play")
 Settings = NodePath("ButtonHolder/Settings")
 Quit = NodePath("ButtonHolder/Quit")
 
+[node name="Background" type="CanvasLayer" parent="."]
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -33,7 +35,7 @@ offset_right = 166.5
 offset_bottom = 128.0
 grow_horizontal = 2
 theme = ExtResource("2_7vrkn")
-text = "Game Title"
+text = "Eternal Vengence"
 label_settings = SubResource("LabelSettings_fu7sn")
 horizontal_alignment = 1
 vertical_alignment = 1

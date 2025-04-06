@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhrakewpmah3g"]
+
+[ext_resource type="Theme" path="res://Assets/UI_Theme.tres" id="1_o8k5v"]
+[ext_resource type="Script" uid="uid://s1y1pg4xijjh" path="res://Src/Menus/hud.gd" id="1_x7x41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7x41"]
+bg_color = Color(0, 0, 0, 0.0392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqy05"]
+bg_color = Color(0.686275, 0, 0.137255, 0.784314)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_x7x41")
+
+[node name="gun" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_o8k5v")
+text = "SHOTGUN"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="healthbar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 400.0
+grow_vertical = 0
+theme = ExtResource("1_o8k5v")
+theme_override_styles/background = SubResource("StyleBoxFlat_x7x41")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aqy05")
+max_value = 20.0
+step = 1.0
+value = 20.0
+show_percentage = false

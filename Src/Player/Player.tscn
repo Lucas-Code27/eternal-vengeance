@@ -82,7 +82,7 @@ libraries = {
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_35oun")
-Max_Health = 10
+Max_Health = 40
 metadata/_custom_type_script = "uid://4m8k3ln0731x"
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
