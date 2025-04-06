@@ -31,7 +31,7 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_o8k5v")
-text = "SHOTGUN"
+text = "PISTOL"
 horizontal_alignment = 2
 uppercase = true
 
