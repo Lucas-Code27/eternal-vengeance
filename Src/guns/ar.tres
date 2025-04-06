@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_mp0ha")
-cooldowntime = 0.1
+cooldowntime = 0.05
 speed = 30
-damage = 1
+damage = 3
+spread = 0.1
+bullet_amnt = 1
 metadata/_custom_type_script = "uid://d0ekklj0al525"

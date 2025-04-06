@@ -5,6 +5,5 @@
 [node name="GameScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
 
 [node name="Player" parent="." instance=ExtResource("1_ybpm7")]

@@ -1,22 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt1vayt1xblxj"]
+[gd_scene load_steps=10 format=3 uid="uid://bt1vayt1xblxj"]
 
 [ext_resource type="Script" uid="uid://d3tup8ql8v4kt" path="res://Src/Player/player.gd" id="1_ujskw"]
 [ext_resource type="Script" uid="uid://b85wfj2cbgrmj" path="res://Src/Components/shooting_component_2d.gd" id="2_f70li"]
 [ext_resource type="Texture2D" uid="uid://bi88hipb0smao" path="res://Assets/Art/playersheet.png" id="2_kpvkq"]
 [ext_resource type="PackedScene" uid="uid://dxo713ynsgnk2" path="res://Src/Player/Bullet.tscn" id="3_vr7rf"]
-[ext_resource type="Resource" uid="uid://drpuosay45jlr" path="res://Src/guns/pistol.tres" id="5_rtus5"]
+[ext_resource type="Resource" uid="uid://gqdcvn2r7va" path="res://Src/guns/shotgun.tres" id="5_rtus5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yvb5"]
 size = Vector2(5, 6)
+
+[sub_resource type="Animation" id="Animation_rtus5"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_35oun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ny17j"]
+_data = {
+&"RESET": SubResource("Animation_35oun"),
+&"idle": SubResource("Animation_rtus5")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ujskw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -1)
+position = Vector2(0, -1)
 texture = ExtResource("2_kpvkq")
 hframes = 6
 vframes = 4
+frame = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -32,6 +71,11 @@ script = ExtResource("2_f70li")
 projectile = ExtResource("3_vr7rf")
 stats = ExtResource("5_rtus5")
 parent = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ny17j")
+}
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="statschanged" from="Pivot/Shootingcomp" to="." method="_on_shootingcomp_statschanged"]

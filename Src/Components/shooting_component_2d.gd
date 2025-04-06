@@ -14,16 +14,18 @@ signal statschanged
 
 func shoot() -> void:
 	# Instantiate the Projectile
-	var bullet_inst:Bullet2D = projectile.instantiate()
-	
-	# Position and Direction to move
-	bullet_inst.global_position = global_position
-	bullet_inst.global_rotation = global_rotation
-	bullet_inst.direction = Vector2.RIGHT.rotated(global_rotation)
-	
-	# Set Stats
-	bullet_inst.speed = stats.speed
-	bullet_inst.damage = stats.damage
-	
-	# Release it to the world
-	scene.add_child(bullet_inst)
+	for bullet in stats.bullet_amnt:
+		var bullet_inst:Bullet2D = projectile.instantiate()
+		var spread_amnt:float = randf_range(-stats.spread,stats.spread)
+		
+		# Position and Direction to move
+		bullet_inst.global_position = global_position
+		bullet_inst.global_rotation = global_rotation + spread_amnt
+		bullet_inst.direction = Vector2.RIGHT.rotated(global_rotation + spread_amnt)
+		
+		# Set Stats
+		bullet_inst.speed = stats.speed
+		bullet_inst.damage = stats.damage
+		
+		# Release it to the world
+		scene.add_child(bullet_inst)
