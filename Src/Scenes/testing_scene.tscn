@@ -36,6 +36,6 @@ render_target_update_mode = 4
 player = NodePath("../../Game/SubViewportContainer/SubViewport/GameScene/Player")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_siumt")]
-process_mode = 3
+visible = false
 
 [editable path="Game/SubViewportContainer/SubViewport/GameScene"]
