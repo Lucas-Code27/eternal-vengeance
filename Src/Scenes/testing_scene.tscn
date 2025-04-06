@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw4t0wlbl5tca"]
+[gd_scene load_steps=4 format=3 uid="uid://cw4t0wlbl5tca"]
 
 [ext_resource type="PackedScene" uid="uid://ccxd6togt4p40" path="res://Src/Scenes/GameScene.tscn" id="1_prj28"]
 [ext_resource type="PackedScene" uid="uid://bhrakewpmah3g" path="res://Src/Menus/HUD.tscn" id="2_wckcm"]
+[ext_resource type="PackedScene" uid="uid://br81hp0u0o5me" path="res://Src/Menus/PauseMenu.tscn" id="3_siumt"]
 
 [node name="Testing-scene" type="Node2D"]
 
@@ -33,5 +34,8 @@ render_target_update_mode = 4
 
 [node name="Hud" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_wckcm")]
 player = NodePath("../../Game/SubViewportContainer/SubViewport/GameScene/Player")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_siumt")]
+process_mode = 3
 
 [editable path="Game/SubViewportContainer/SubViewport/GameScene"]

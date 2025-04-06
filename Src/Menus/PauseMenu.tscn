@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://br81hp0u0o5me"]
+
+[ext_resource type="Script" uid="uid://dtghdlbsg6u1h" path="res://Src/Menus/pause_menu.gd" id="1_5avs1"]
+[ext_resource type="Theme" path="res://Assets/UI_Theme.tres" id="1_gswoa"]
+[ext_resource type="PackedScene" uid="uid://dwcfbqicnppbs" path="res://Src/UI/Settings_Menu.tscn" id="2_5avs1"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5avs1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0, 0, 0.235294)
+
+[node name="Pausedtext" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 30.0
+offset_right = 62.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = ExtResource("1_gswoa")
+text = "paused"
+uppercase = true
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_5avs1")]
+layout_mode = 1
+offset_top = 19.0
+offset_bottom = 19.0
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -4.0
+offset_right = -72.0
+offset_bottom = 62.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "QUIT"
+
+[connection signal="pressed" from="SettingsMenu/Background/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+
+[editable path="SettingsMenu"]
