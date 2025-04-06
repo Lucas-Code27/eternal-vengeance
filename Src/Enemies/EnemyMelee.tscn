@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm7m4gv58w0rb"]
+
+[ext_resource type="Script" uid="uid://cuhk4ir1rofa1" path="res://Src/Enemies/enemy.gd" id="1_yaelc"]
+[ext_resource type="Texture2D" uid="uid://bd6ar3vynulue" path="res://Assets/Art/enemy.png" id="1_yt822"]
+[ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="3_cjvt4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaelc"]
+size = Vector2(7, 7)
+
+[node name="EnemyMelee" type="Area2D"]
+script = ExtResource("1_yaelc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_yaelc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yt822")
+hframes = 3
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_cjvt4")
+Max_Health = 2
+metadata/_custom_type_script = "uid://4m8k3ln0731x"
+
+[connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
