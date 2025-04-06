@@ -9,6 +9,9 @@ var speed:int = 150
 
 var canshoot:bool = true
 
+func _ready() -> void:
+	$AnimationPlayer.play("idle")
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and canshoot:
 		shooter.shoot()
@@ -32,3 +35,7 @@ func _on_cooldown_timeout() -> void:
 
 func _on_shootingcomp_statschanged() -> void:
 	cooldowntime = shooter.stats.cooldowntime
+
+
+func _on_health_component_die() -> void:
+	get_tree().reload_current_scene()

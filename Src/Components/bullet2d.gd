@@ -3,6 +3,7 @@ class_name Bullet2D extends Area2D
 # Stats set by ShootingComponent2D node
 var speed:int
 var damage:int
+var pierce:int
 
 # Direction to move in
 var direction:Vector2
@@ -12,8 +13,11 @@ func _physics_process(_delta: float) -> void:
 	global_position += direction * speed
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_node("HealthComponent"):
-		body.get_node("HealthComponent").Hurt(damage)
+	while pierce > 0:
+		if body.has_node("HealthComponent"):
+			body.get_node("HealthComponent").Hurt(damage)
+		
+		pierce -= 1
 	
 	queue_free()
 

@@ -26,6 +26,7 @@ func shoot() -> void:
 		# Set Stats
 		bullet_inst.speed = stats.speed
 		bullet_inst.damage = stats.damage
+		bullet_inst.pierce = stats.pierce
 		
 		# Release it to the world
 		scene.add_child(bullet_inst)

@@ -5,3 +5,4 @@ class_name GunStats extends Resource
 @export var damage:int
 @export var spread:float
 @export var bullet_amnt:int = 1
+@export var pierce:int = 1

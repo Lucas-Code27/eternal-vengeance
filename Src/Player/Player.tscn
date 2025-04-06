@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt1vayt1xblxj"]
+[gd_scene load_steps=11 format=3 uid="uid://bt1vayt1xblxj"]
 
 [ext_resource type="Script" uid="uid://d3tup8ql8v4kt" path="res://Src/Player/player.gd" id="1_ujskw"]
 [ext_resource type="Script" uid="uid://b85wfj2cbgrmj" path="res://Src/Components/shooting_component_2d.gd" id="2_f70li"]
 [ext_resource type="Texture2D" uid="uid://bi88hipb0smao" path="res://Assets/Art/playersheet.png" id="2_kpvkq"]
 [ext_resource type="PackedScene" uid="uid://dxo713ynsgnk2" path="res://Src/Player/Bullet.tscn" id="3_vr7rf"]
 [ext_resource type="Resource" uid="uid://gqdcvn2r7va" path="res://Src/guns/shotgun.tres" id="5_rtus5"]
+[ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="6_35oun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yvb5"]
 size = Vector2(5, 6)
@@ -48,6 +49,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_ujskw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -77,5 +80,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_ny17j")
 }
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_35oun")
+Max_Health = 10
+metadata/_custom_type_script = "uid://4m8k3ln0731x"
+
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="statschanged" from="Pivot/Shootingcomp" to="." method="_on_shootingcomp_statschanged"]
+[connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]

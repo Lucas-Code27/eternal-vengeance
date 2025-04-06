@@ -8,6 +8,8 @@
 size = Vector2(7, 4)
 
 [node name="Pistolpickup" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_18r4d")
 gun = ExtResource("2_6h822")
 metadata/_custom_type_script = "uid://cy7uaxexqjoyn"

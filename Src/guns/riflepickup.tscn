@@ -8,6 +8,8 @@
 size = Vector2(16, 6)
 
 [node name="Riflepickup" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_cb0h2")
 gun = ExtResource("2_5qna3")
 metadata/_custom_type_script = "uid://cy7uaxexqjoyn"

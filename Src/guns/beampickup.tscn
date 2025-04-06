@@ -8,6 +8,8 @@
 size = Vector2(22, 8)
 
 [node name="Beampickup" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_q4fbt")
 gun = ExtResource("2_2557c")
 metadata/_custom_type_script = "uid://cy7uaxexqjoyn"
