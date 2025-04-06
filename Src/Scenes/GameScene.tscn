@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccxd6togt4p40"]
+[gd_scene load_steps=7 format=3 uid="uid://ccxd6togt4p40"]
 
 [ext_resource type="PackedScene" uid="uid://bt1vayt1xblxj" path="res://Src/Player/Player.tscn" id="1_ybpm7"]
+[ext_resource type="PackedScene" uid="uid://ygp7w6q66w14" path="res://Src/guns/arpickup.tscn" id="2_ybpm7"]
+[ext_resource type="PackedScene" uid="uid://cbl431hbyacyk" path="res://Src/guns/pistolpickup.tscn" id="3_ldoml"]
+[ext_resource type="PackedScene" uid="uid://csp85rl046sro" path="res://Src/guns/beampickup.tscn" id="4_xk7c6"]
+[ext_resource type="PackedScene" uid="uid://i3udnqhpfoyn" path="res://Src/guns/riflepickup.tscn" id="5_oyh4y"]
+[ext_resource type="PackedScene" uid="uid://dmxryfkqqaued" path="res://Src/guns/shotgunpickup.tscn" id="6_efvuh"]
 
 [node name="GameScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_ybpm7")]
+
+[node name="Gunpickup" parent="." instance=ExtResource("2_ybpm7")]
+position = Vector2(55, 42)
+
+[node name="Pistolpickup" parent="." instance=ExtResource("3_ldoml")]
+position = Vector2(-112, 5)
+
+[node name="Beampickup" parent="." instance=ExtResource("4_xk7c6")]
+position = Vector2(-56, 83)
+
+[node name="Riflepickup" parent="." instance=ExtResource("5_oyh4y")]
+position = Vector2(107, -7)
+
+[node name="Shotgunpickup" parent="." instance=ExtResource("6_efvuh")]
+position = Vector2(6, -60)
