@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://be638hyey4g75"]
+
+[ext_resource type="Script" uid="uid://cbvmiatm5w0q6" path="res://Src/Menus/lore_screen.gd" id="1_56fhs"]
+[ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="1_ot1a5"]
+[ext_resource type="Shader" uid="uid://jndjsx54fj6f" path="res://Src/UI/menubgscroll.gdshader" id="2_7u53q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_upre2"]
+shader = ExtResource("2_7u53q")
+shader_parameter/speed = 0.025
+
+[sub_resource type="Gradient" id="Gradient_56fhs"]
+colors = PackedColorArray(0.410328, 0, 0, 1, 0.144053, 0.0246513, 0.0633654, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_56fhs"]
+frequency = 0.14
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7u53q"]
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_56fhs")
+noise = SubResource("FastNoiseLite_56fhs")
+
+[node name="LoreScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_56fhs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_upre2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_7u53q")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 19.0
+offset_top = -289.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ot1a5")
+text = "The Demons are Restless and are tying to break free now that they have killed their sworn enemy... The Doom Guy. Originally holding them back now that he is dead You must step forward equip the armor and go to avenge the Doom Guy and Save Humanity."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.5
+offset_top = -49.0
+offset_right = 145.5
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ot1a5")
+text = "ACCEPT YOUR MISSION"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.5
+offset_top = 66.0
+offset_right = 145.5
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ot1a5")
+text = "RUN AWAY SCARED"
+
+[node name="Comntrols" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -292.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_ot1a5")
+text = "CONTROLS:
+WASD - MOVE
+MOUSE - AIM
+LEFT CLICK - SHOOT
+SPACE - DODGE/DASH
+P/TAB/ESC - PAUSE
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

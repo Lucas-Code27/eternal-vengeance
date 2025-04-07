@@ -1,12 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmnj6w5hgi0jx"]
+[gd_scene load_steps=16 format=3 uid="uid://cmnj6w5hgi0jx"]
 
 [ext_resource type="Script" uid="uid://cmc4wwseqef7d" path="res://Src/UI/main_menu.gd" id="1_06t4h"]
-[ext_resource type="Theme" path="res://Assets/UI_Theme.tres" id="2_7vrkn"]
-[ext_resource type="PackedScene" uid="uid://cw4t0wlbl5tca" path="res://Src/Scenes/testing_scene.tscn" id="2_fu7sn"]
+[ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://be638hyey4g75" path="res://Src/Menus/LoreScreen.tscn" id="2_k17ck"]
+[ext_resource type="Texture2D" uid="uid://b5m7uk84fm3kq" path="res://Assets/Art/BIG_GEORGE.png" id="3_bgt4s"]
+[ext_resource type="Shader" uid="uid://jndjsx54fj6f" path="res://Src/UI/menubgscroll.gdshader" id="3_ob811"]
 [ext_resource type="PackedScene" uid="uid://dwcfbqicnppbs" path="res://Src/UI/Settings_Menu.tscn" id="4_jix8l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob811"]
+shader = ExtResource("3_ob811")
+shader_parameter/speed = 0.05
+
+[sub_resource type="Gradient" id="Gradient_qy5gb"]
+colors = PackedColorArray(0, 0, 0, 1, 0.358988, 6.70822e-07, 1.20327e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ueefl"]
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k17ck"]
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_qy5gb")
+noise = SubResource("FastNoiseLite_ueefl")
+
+[sub_resource type="Animation" id="Animation_ob811"]
+resource_name = "menu"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_0gkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w1rln"]
+_data = {
+&"RESET": SubResource("Animation_0gkmg"),
+&"menu": SubResource("Animation_ob811")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_ob811"]
+font_size = 24
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("Settings_Menu", "Play", "Settings", "Quit")]
 layout_mode = 3
@@ -16,13 +75,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
-Next_Scene = ExtResource("2_fu7sn")
+Next_Scene = ExtResource("2_k17ck")
 Settings_Menu = NodePath("SettingsMenu")
+menu_song = "menu"
 Play = NodePath("ButtonHolder/Play")
 Settings = NodePath("ButtonHolder/Settings")
 Quit = NodePath("ButtonHolder/Quit")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ob811")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_k17ck")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(614, 335)
+scale = Vector2(10, 10)
+texture = ExtResource("3_bgt4s")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_w1rln")
+}
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -105,3 +186,19 @@ text = "Quit
 visible = false
 layout_mode = 1
 mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -359.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_7vrkn")
+text = "a game by lucas-code and viylouu"
+label_settings = SubResource("LabelSettings_ob811")
+uppercase = true

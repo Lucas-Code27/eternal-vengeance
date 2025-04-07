@@ -12,6 +12,9 @@ extends Control
 @export var Quit:Button
 
 func _ready() -> void:
+	
+	$Sprite2D/AnimationPlayer.play("menu")
+	
 	# Play Menu Song
 	AudioManager.play_song(menu_song)
 	

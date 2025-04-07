@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfpmfciyg4lml"]
+
+[ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="1_qy5gb"]
+[ext_resource type="Script" uid="uid://don4xfncgigeq" path="res://Src/Menus/win_screen.gd" id="1_ueefl"]
+[ext_resource type="Shader" uid="uid://jndjsx54fj6f" path="res://Src/UI/menubgscroll.gdshader" id="2_s3qi5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3j7fu"]
+shader = ExtResource("2_s3qi5")
+shader_parameter/speed = 0.05
+
+[sub_resource type="Gradient" id="Gradient_s3qi5"]
+colors = PackedColorArray(0, 0, 0, 1, 0.358988, 6.70822e-07, 1.20327e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3j7fu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s3qi5"]
+seamless = true
+color_ramp = SubResource("Gradient_s3qi5")
+noise = SubResource("FastNoiseLite_3j7fu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ueefl"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3j7fu"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ueefl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3j7fu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_s3qi5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -40.0
+offset_right = 104.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qy5gb")
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_ueefl")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 36.0
+offset_right = 108.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qy5gb")
+text = "YOU DEFEATED BIG GEORGE AND 
+AVENGED DOOM GUY"
+label_settings = SubResource("LabelSettings_3j7fu")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 451.0
+offset_right = 612.0
+offset_bottom = 500.0
+theme = ExtResource("1_qy5gb")
+text = "LEAVE"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

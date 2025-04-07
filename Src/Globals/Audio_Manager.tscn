@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0yqebw0tjdfq"]
+[gd_scene load_steps=5 format=3 uid="uid://d0yqebw0tjdfq"]
 
-[ext_resource type="Script" path="res://Src/Globals/audio_manager.gd" id="1_dwu3p"]
+[ext_resource type="Script" uid="uid://brpuognkvf68m" path="res://Src/Globals/audio_manager.gd" id="1_dwu3p"]
+[ext_resource type="AudioStream" uid="uid://l8eek3fi6gu4" path="res://Assets/Sounds/BOSS ENTRANCE.mp3" id="2_ftjft"]
+[ext_resource type="AudioStream" uid="uid://50jmewgpsi74" path="res://Assets/Music/april jam song.wav" id="3_ftjft"]
+[ext_resource type="AudioStream" uid="uid://chpujpqjfh8ey" path="res://Assets/Music/april jam menu song.wav" id="4_8v54u"]
 
 [node name="AudioManager" type="Node" node_paths=PackedStringArray("music", "sounds")]
 script = ExtResource("1_dwu3p")
@@ -9,4 +12,15 @@ sounds = NodePath("SFX")
 
 [node name="SFX" type="Node" parent="."]
 
+[node name="boss" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_ftjft")
+
 [node name="Music" type="Node" parent="."]
+
+[node name="fight" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_ftjft")
+bus = &"Music"
+
+[node name="menu" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_8v54u")
+bus = &"Music"

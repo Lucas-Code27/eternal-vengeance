@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://v1bmqgsx5hji"]
+[gd_scene load_steps=4 format=3 uid="uid://v1bmqgsx5hji"]
 
 [ext_resource type="Script" uid="uid://dh2icu7oy82cw" path="res://Src/UI/volume_slider.gd" id="1_sxwak"]
+[ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="2_4khhp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_14cmg"]
 
 [node name="VolumeSlider" type="HSlider"]
 offset_right = 180.0
 offset_bottom = 16.0
+theme = ExtResource("2_4khhp")
 max_value = 1.0
 step = 0.01
 script = ExtResource("1_sxwak")
@@ -14,6 +18,8 @@ layout_mode = 0
 offset_left = 50.0
 offset_top = -24.0
 offset_right = 130.0
+theme = ExtResource("2_4khhp")
 text = "Bus Name"
+label_settings = SubResource("LabelSettings_14cmg")
 horizontal_alignment = 1
 vertical_alignment = 1

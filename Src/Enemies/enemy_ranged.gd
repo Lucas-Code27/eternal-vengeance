@@ -14,7 +14,7 @@ var player:CharacterBody2D
 var canshoot:bool = true
 
 func _ready() -> void:
-	$AnimationPlayer.play("run")
+	$AnimationPlayer.play("float")
 	player = get_parent().find_child("Player")
 	cooldown = shooter.stats.cooldowntime
 

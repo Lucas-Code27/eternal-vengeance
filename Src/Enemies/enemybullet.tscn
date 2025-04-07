@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfli885adll14"]
 
 [ext_resource type="Script" uid="uid://cwfkji3oc8o3q" path="res://Src/Enemies/enemybullet.gd" id="1_0yflc"]
-[ext_resource type="Texture2D" uid="uid://04u80y4o0vv5" path="res://Assets/Art/boolet.png" id="2_0yflc"]
+[ext_resource type="Texture2D" uid="uid://d1vausn1swij4" path="res://Assets/Art/the_orb.png" id="2_0yflc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lqk4"]
-size = Vector2(8, 0.5)
+size = Vector2(8, 8)
 
 [node name="Enemybullet" type="Area2D"]
 collision_layer = 0
@@ -21,8 +21,8 @@ texture = ExtResource("2_0yflc")
 shape = SubResource("RectangleShape2D_4lqk4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, 1.49012e-08)
-scale = Vector2(0.4, 0.025)
+position = Vector2(0, -1.19209e-07)
+scale = Vector2(0.4, 0.4)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://dq2oh0f2fch5l"]
+
+[ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="1_i6utv"]
+[ext_resource type="Script" uid="uid://0tqr65s1sm3c" path="res://Src/Menus/death_screen.gd" id="1_vc2ff"]
+[ext_resource type="Shader" uid="uid://jndjsx54fj6f" path="res://Src/UI/menubgscroll.gdshader" id="2_6e5pu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4505v"]
+shader = ExtResource("2_6e5pu")
+shader_parameter/speed = 0.05
+
+[sub_resource type="Gradient" id="Gradient_ueefl"]
+colors = PackedColorArray(0, 0, 0, 1, 0.358988, 6.70822e-07, 1.20327e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s3qi5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rwq08"]
+seamless = true
+color_ramp = SubResource("Gradient_ueefl")
+noise = SubResource("FastNoiseLite_s3qi5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vc2ff"]
+font_size = 64
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vc2ff")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_4505v")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_rwq08")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -248.0
+offset_right = 184.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i6utv")
+text = "YOU ARE DEAD"
+label_settings = SubResource("LabelSettings_vc2ff")
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -51.0
+offset_right = 176.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETRY"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = 76.0
+offset_right = 176.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GIVE UP"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
