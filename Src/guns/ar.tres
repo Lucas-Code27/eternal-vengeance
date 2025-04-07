@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_mp0ha")
-cooldowntime = 0.025
-speed = 30
-damage = 5
+cooldowntime = 0.03
+speed = 20
+damage = 3
 spread = 0.075
 bullet_amnt = 1
 pierce = 1

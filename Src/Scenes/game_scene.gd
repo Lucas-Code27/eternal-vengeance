@@ -31,6 +31,7 @@ func _on_timer_timeout() -> void:
 	wave()
 	
 	if waves == 6:
+		$Timer.wait_time = 7.5
 		AudioManager.active_music_player.stop()
 		AudioManager.play_sound("boss")
 		$BigGeorge.set_physics_process(true)
