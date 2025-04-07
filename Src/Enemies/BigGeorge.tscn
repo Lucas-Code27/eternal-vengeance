@@ -12,11 +12,11 @@ size = Vector2(69, 54)
 
 [sub_resource type="Resource" id="Resource_y0mfv"]
 script = ExtResource("4_4483g")
-cooldowntime = 0.4
+cooldowntime = 0.5
 speed = 1
-damage = 5
+damage = 4
 spread = 1.5
-bullet_amnt = 8
+bullet_amnt = 7
 pierce = 1
 metadata/_custom_type_script = "uid://d0ekklj0al525"
 

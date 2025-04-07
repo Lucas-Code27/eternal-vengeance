@@ -12,25 +12,26 @@ func _ready() -> void:
 	$BigGeorge.visible = false
 	
 	AudioManager.play_song("fight")
-	wave()
+	wave(false)
 
 
-func wave() -> void:
+func wave(weapon:bool) -> void:
 	waves += 1
 	
-	spawner.spawn(20)
+	spawner.spawn(15)
 	
-	for spawn in pickupspawns:
-		if randi_range(1,12) > 4:
-			spawn.spawn(1)
+	if weapon:
+		for spawn in pickupspawns:
+			if randi_range(1,12) < 4:
+				spawn.spawn(1)
 	
 	$Timer.start()
 
 
 func _on_timer_timeout() -> void:
-	wave()
+	wave(true)
 	
-	if waves == 6:
+	if waves == 8:
 		$Timer.wait_time = 7.5
 		AudioManager.active_music_player.stop()
 		AudioManager.play_sound("boss")

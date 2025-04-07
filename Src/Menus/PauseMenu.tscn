@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://br81hp0u0o5me"]
+[gd_scene load_steps=5 format=3 uid="uid://br81hp0u0o5me"]
 
 [ext_resource type="Script" uid="uid://dtghdlbsg6u1h" path="res://Src/Menus/pause_menu.gd" id="1_5avs1"]
 [ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="1_gswoa"]
 [ext_resource type="PackedScene" uid="uid://dwcfbqicnppbs" path="res://Src/UI/Settings_Menu.tscn" id="2_5avs1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5avs1"]
+font_size = 24
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -56,6 +59,29 @@ offset_bottom = 62.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "QUIT"
+
+[node name="Comntrols" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -247.0
+offset_top = -206.0
+offset_right = -37.0
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_gswoa")
+text = "CONTROLS:
+WASD - MOVE
+MOUSE - AIM
+LEFT CLICK - SHOOT
+SPACE - DODGE/DASH
+P/TAB/ESC - PAUSE
+"
+label_settings = SubResource("LabelSettings_5avs1")
 
 [connection signal="pressed" from="SettingsMenu/Background/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
