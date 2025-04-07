@@ -39,3 +39,4 @@ player = NodePath("../../Game/SubViewportContainer/SubViewport/GameScene/Player"
 visible = false
 
 [editable path="Game/SubViewportContainer/SubViewport/GameScene"]
+[editable path="Game/SubViewportContainer/SubViewport/GameScene/BigGeorge"]

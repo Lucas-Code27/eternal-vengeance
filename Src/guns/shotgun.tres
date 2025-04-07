@@ -4,9 +4,10 @@
 
 [resource]
 script = ExtResource("1_xwtdh")
-cooldowntime = 0.4
+cooldowntime = 0.5
 speed = 10
-damage = 2
-spread = 0.5
-bullet_amnt = 8
+damage = 3
+spread = 0.4
+bullet_amnt = 10
+pierce = 1
 metadata/_custom_type_script = "uid://d0ekklj0al525"

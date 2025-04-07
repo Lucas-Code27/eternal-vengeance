@@ -94,7 +94,7 @@ vframes = 2
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_xvs6b")
-Max_Health = 8
+Max_Health = 22
 metadata/_custom_type_script = "uid://4m8k3ln0731x"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
