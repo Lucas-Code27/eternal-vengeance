@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 		if thing.has_node("HealthComponent"):
 			var push_vector = thing.global_position.direction_to(global_position).normalized()
 			
-			global_position += push_vector/30
+			global_position += push_vector/10
 	
 
 func _on_health_component_die() -> void:

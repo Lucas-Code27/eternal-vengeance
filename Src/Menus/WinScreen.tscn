@@ -81,10 +81,19 @@ label_settings = SubResource("LabelSettings_3j7fu")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 531.0
-offset_top = 451.0
+offset_top = 511.0
 offset_right = 612.0
-offset_bottom = 500.0
+offset_bottom = 560.0
 theme = ExtResource("1_qy5gb")
 text = "LEAVE"
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 493.0
+offset_top = 442.0
+offset_right = 653.0
+offset_bottom = 491.0
+theme = ExtResource("1_qy5gb")
+text = "DO IT AGAIN"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

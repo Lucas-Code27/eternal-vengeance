@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0yqebw0tjdfq"]
+[gd_scene load_steps=7 format=3 uid="uid://d0yqebw0tjdfq"]
 
 [ext_resource type="Script" uid="uid://brpuognkvf68m" path="res://Src/Globals/audio_manager.gd" id="1_dwu3p"]
 [ext_resource type="AudioStream" uid="uid://l8eek3fi6gu4" path="res://Assets/Sounds/BOSS ENTRANCE.mp3" id="2_ftjft"]
 [ext_resource type="AudioStream" uid="uid://50jmewgpsi74" path="res://Assets/Music/april jam song.wav" id="3_ftjft"]
+[ext_resource type="AudioStream" uid="uid://dpmcmugq8x0fr" path="res://Assets/Sounds/laserShoot(1).wav" id="3_mji5p"]
 [ext_resource type="AudioStream" uid="uid://chpujpqjfh8ey" path="res://Assets/Music/april jam menu song.wav" id="4_8v54u"]
+[ext_resource type="AudioStream" uid="uid://bi45rp3ud5agp" path="res://Assets/Sounds/pickupCoin(1).wav" id="4_y84fc"]
 
 [node name="AudioManager" type="Node" node_paths=PackedStringArray("music", "sounds")]
 script = ExtResource("1_dwu3p")
@@ -15,6 +17,16 @@ sounds = NodePath("SFX")
 [node name="boss" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("2_ftjft")
 volume_db = 2.0
+bus = &"Music"
+
+[node name="shot" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_mji5p")
+volume_db = -2.0
+bus = &"Sound"
+
+[node name="pickup" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_y84fc")
+bus = &"Sound"
 
 [node name="Music" type="Node" parent="."]
 

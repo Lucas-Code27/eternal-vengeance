@@ -72,6 +72,7 @@ offset_right = 176.0
 offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_i6utv")
 text = "RETRY"
 
 [node name="Button2" type="Button" parent="."]
@@ -87,6 +88,7 @@ offset_right = 176.0
 offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_i6utv")
 text = "GIVE UP"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -6,6 +6,8 @@ extends Node2D
 
 var waves:int = 1
 
+var spawnamt:int = 15
+
 func _ready() -> void:
 	$BigGeorge.set_physics_process(false)
 	$BigGeorge.monitorable = false
@@ -18,7 +20,8 @@ func _ready() -> void:
 func wave(weapon:bool) -> void:
 	waves += 1
 	
-	spawner.spawn(15)
+	spawner.spawn(spawnamt)
+	spawnamt += 2
 	
 	if weapon:
 		for spawn in pickupspawns:
@@ -31,10 +34,11 @@ func wave(weapon:bool) -> void:
 func _on_timer_timeout() -> void:
 	wave(true)
 	
-	if waves == 8:
+	if waves == 10:
+		spawnamt = 15
 		$Timer.wait_time = 7.5
 		AudioManager.active_music_player.stop()
-		AudioManager.play_sound("boss")
+		AudioManager.play_sound("boss",1)
 		$BigGeorge.set_physics_process(true)
 		$BigGeorge.monitorable = true
 		$BigGeorge.visible = true

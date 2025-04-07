@@ -52,7 +52,7 @@ position = Vector2(-270, 0)
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(273, -1)
 script = ExtResource("7_oyh4y")
-enemies = Array[PackedScene]([ExtResource("9_tmql2"), ExtResource("10_cy7q1")])
+enemies = Array[PackedScene]([ExtResource("9_tmql2"), ExtResource("10_cy7q1"), ExtResource("9_tmql2")])
 
 [node name="Pickupspawner" type="Node2D" parent="."]
 position = Vector2(152, -59)

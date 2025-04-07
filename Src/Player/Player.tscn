@@ -65,6 +65,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_8yvb5")
 
 [node name="cooldown" type="Timer" parent="."]
+process_callback = 0
 
 [node name="Pivot" type="Node2D" parent="."]
 
@@ -86,7 +87,8 @@ Max_Health = 40
 metadata/_custom_type_script = "uid://4m8k3ln0731x"
 
 [node name="invulnerability" type="Timer" parent="."]
-wait_time = 0.25
+process_callback = 0
+wait_time = 0.2
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="statschanged" from="Pivot/Shootingcomp" to="." method="_on_shootingcomp_statschanged"]

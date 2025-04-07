@@ -18,6 +18,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and canshoot and !rolling:
 		shooter.shoot()
+		AudioManager.play_sound("shot",randf_range(0.9,1.1))
 		$cooldown.start(cooldowntime)
 		canshoot = false
 	

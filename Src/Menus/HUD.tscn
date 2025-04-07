@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://s1y1pg4xijjh" path="res://Src/Menus/hud.gd" id="1_x7x41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7x41"]
-bg_color = Color(0, 0, 0, 0.0392157)
+bg_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqy05"]
-bg_color = Color(0.686275, 0, 0.137255, 0.784314)
+bg_color = Color(1, 0, 0.137255, 0.784314)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -48,5 +48,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_x7x41")
 theme_override_styles/fill = SubResource("StyleBoxFlat_aqy05")
 max_value = 20.0
 step = 1.0
-value = 20.0
+value = 16.0
 show_percentage = false

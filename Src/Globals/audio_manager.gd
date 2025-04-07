@@ -12,8 +12,9 @@ func play_song(songname:String):
 	if active_music_player != null:
 		active_music_player.play()
 
-func play_sound(soundname:String):
+func play_sound(soundname:String,pitch:float):
 	active_audio_player = sounds.get_node(soundname)
+	active_audio_player.pitch_scale = pitch
 	
 	if active_audio_player != null:
 		active_audio_player.play()
