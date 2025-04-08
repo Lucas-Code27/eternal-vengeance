@@ -1,11 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm7m4gv58w0rb"]
+[gd_scene load_steps=13 format=3 uid="uid://bm7m4gv58w0rb"]
 
 [ext_resource type="Script" uid="uid://cuhk4ir1rofa1" path="res://Src/Enemies/enemy.gd" id="1_yaelc"]
 [ext_resource type="Texture2D" uid="uid://bd6ar3vynulue" path="res://Assets/Art/enemy.png" id="1_yt822"]
+[ext_resource type="Shader" uid="uid://cd3h0pkmnoqcp" path="res://Assets/hit_flash.tres" id="2_pcnsx"]
 [ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="3_cjvt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yaelc"]
 size = Vector2(7, 7)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihsi0"]
+resource_local_to_scene = true
+shader = ExtResource("2_pcnsx")
+shader_parameter/enable = false
+shader_parameter/ColorParameter = Color(0.588235, 0.588235, 0.588235, 1)
 
 [sub_resource type="Animation" id="Animation_pcnsx"]
 length = 0.001
@@ -45,6 +52,43 @@ _data = {
 &"run": SubResource("Animation_cjvt4")
 }
 
+[sub_resource type="Animation" id="Animation_ihsi0"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ojp0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50y52"]
+_data = {
+&"RESET": SubResource("Animation_ojp0c"),
+&"hit": SubResource("Animation_ihsi0")
+}
+
 [node name="EnemyMelee" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_yaelc")
@@ -56,6 +100,7 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_yaelc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ihsi0")
 texture = ExtResource("1_yt822")
 hframes = 3
 
@@ -69,5 +114,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_ihsi0")
 }
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_50y52")
+}
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
+[connection signal="Hit" from="HealthComponent" to="." method="_on_health_component_hit"]

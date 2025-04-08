@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var cooldown:Timer = $cooldown
 @onready var pivot:Node2D = $Pivot
 
+@onready var camera:Camera2D = get_parent().get_node("Camera")
+
 var speed:int = 150
 @onready var cooldowntime:float = shooter.stats.cooldowntime
 
@@ -18,6 +20,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and canshoot and !rolling:
 		shooter.shoot()
+		camera.add_shake(0.1)
 		AudioManager.play_sound("shot",randf_range(0.9,1.1))
 		$cooldown.start(cooldowntime)
 		canshoot = false
@@ -30,7 +33,9 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	
 	if Input.is_action_just_pressed("Roll") and !rolling:
+		$CPUParticles2D.emitting = true
 		velocity = direction * speed * 4
+		camera.add_shake(0.2)
 		rolling = true
 		canroll = false
 		health.invincible = true
@@ -66,3 +71,7 @@ func _on_invulnerability_timeout() -> void:
 	health.invincible = false
 	await get_tree().create_timer(0.5).timeout
 	canroll = true
+
+
+func _on_health_component_hit() -> void:
+	camera.add_shake(2)

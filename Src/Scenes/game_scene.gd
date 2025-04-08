@@ -42,4 +42,5 @@ func _on_timer_timeout() -> void:
 		$BigGeorge.set_physics_process(true)
 		$BigGeorge.monitorable = true
 		$BigGeorge.visible = true
+		$BigGeorge.part()
 		AudioManager.active_music_player.play()

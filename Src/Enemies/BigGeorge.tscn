@@ -1,12 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://crb8w7f53udbk"]
+[gd_scene load_steps=20 format=3 uid="uid://crb8w7f53udbk"]
 
 [ext_resource type="Texture2D" uid="uid://b5m7uk84fm3kq" path="res://Assets/Art/BIG_GEORGE.png" id="1_cb80i"]
 [ext_resource type="Script" uid="uid://de6es6emlkf0l" path="res://Src/Enemies/big_george.gd" id="1_hd708"]
 [ext_resource type="Script" uid="uid://b85wfj2cbgrmj" path="res://Src/Components/shooting_component_2d.gd" id="2_bwsgr"]
+[ext_resource type="Shader" uid="uid://cd3h0pkmnoqcp" path="res://Assets/hit_flash.tres" id="2_y1iqn"]
 [ext_resource type="PackedScene" uid="uid://cfli885adll14" path="res://Src/Enemies/enemybullet.tscn" id="3_hd708"]
 [ext_resource type="Script" uid="uid://d0ekklj0al525" path="res://Src/guns/gun_stats.gd" id="4_4483g"]
 [ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="6_4483g"]
 [ext_resource type="Theme" uid="uid://d2dihqa4rl4uw" path="res://Assets/UI_Theme.tres" id="7_y0mfv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2xr7"]
+resource_local_to_scene = true
+shader = ExtResource("2_y1iqn")
+shader_parameter/enable = false
+shader_parameter/ColorParameter = Color(0.196078, 0.196078, 0.196078, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cb80i"]
 size = Vector2(69, 54)
@@ -65,12 +72,65 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2xr7"]
 bg_color = Color(0.867826, 0, 0.117774, 1)
 
+[sub_resource type="Animation" id="Animation_ihsi0"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ojp0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50y52"]
+_data = {
+&"RESET": SubResource("Animation_ojp0c"),
+&"hit": SubResource("Animation_ihsi0")
+}
+
 [node name="BigGeorge" type="Area2D"]
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_hd708")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector2(0, -1)
+spread = 110.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
+color = Color(1, 0.443137, 0, 1)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k2xr7")
 texture = ExtResource("1_cb80i")
 hframes = 3
 
@@ -102,15 +162,22 @@ libraries = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 1
 offset_left = -63.0
-offset_top = -50.0
+offset_top = 22.0
 offset_right = 62.0
-offset_bottom = -42.0
+offset_bottom = 30.0
 theme = ExtResource("7_y0mfv")
 theme_override_styles/background = SubResource("StyleBoxFlat_y1iqn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k2xr7")
 value = 50.0
 show_percentage = false
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_50y52")
+}
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
+[connection signal="Hit" from="HealthComponent" to="." method="_on_health_component_hit"]

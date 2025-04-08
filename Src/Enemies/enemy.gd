@@ -4,6 +4,8 @@ var direction:Vector2
 
 var player:CharacterBody2D
 
+@onready var camera:Camera2D = get_parent().get_node("Camera")
+
 @export var speed:int
 @export var damage:int
 
@@ -35,3 +37,8 @@ func _on_health_component_die() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == player:
 		player.find_child("HealthComponent").Hurt(damage)
+
+
+func _on_health_component_hit() -> void:
+	$AnimationPlayer2.play("hit")
+	camera.add_shake(0.1)

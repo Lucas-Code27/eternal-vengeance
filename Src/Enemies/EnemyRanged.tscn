@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://coe0fvvhcn6ug"]
+[gd_scene load_steps=18 format=3 uid="uid://coe0fvvhcn6ug"]
 
 [ext_resource type="Script" uid="uid://dkiwhqxys32oo" path="res://Src/Enemies/enemy_ranged.gd" id="1_pav6e"]
+[ext_resource type="Shader" uid="uid://cd3h0pkmnoqcp" path="res://Assets/hit_flash.tres" id="2_26488"]
 [ext_resource type="Texture2D" uid="uid://ojlop5k74a4t" path="res://Assets/Art/ranged.png" id="2_sbpuo"]
 [ext_resource type="Script" uid="uid://4m8k3ln0731x" path="res://Src/Components/health_component.gd" id="3_xvs6b"]
 [ext_resource type="Script" uid="uid://b85wfj2cbgrmj" path="res://Src/Components/shooting_component_2d.gd" id="4_oywnl"]
@@ -9,6 +10,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pav6e"]
 size = Vector2(5.5, 7)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64po6"]
+resource_local_to_scene = true
+shader = ExtResource("2_26488")
+shader_parameter/enable = false
+shader_parameter/ColorParameter = Color(0.588235, 0.588235, 0.588235, 1)
 
 [sub_resource type="Animation" id="Animation_pcnsx"]
 length = 0.001
@@ -76,6 +83,43 @@ bullet_amnt = 1
 pierce = 1
 metadata/_custom_type_script = "uid://d0ekklj0al525"
 
+[sub_resource type="Animation" id="Animation_ihsi0"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ojp0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50y52"]
+_data = {
+&"RESET": SubResource("Animation_ojp0c"),
+&"hit": SubResource("Animation_ihsi0")
+}
+
 [node name="EnemyRanged" type="Area2D" node_paths=PackedStringArray("shooter")]
 collision_mask = 3
 script = ExtResource("1_pav6e")
@@ -88,6 +132,7 @@ position = Vector2(-0.25, -0.5)
 shape = SubResource("RectangleShape2D_pav6e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_64po6")
 texture = ExtResource("2_sbpuo")
 hframes = 2
 vframes = 2
@@ -114,5 +159,11 @@ metadata/_custom_type_script = "uid://b85wfj2cbgrmj"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_50y52")
+}
+
 [connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
+[connection signal="Hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

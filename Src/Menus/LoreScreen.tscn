@@ -52,7 +52,7 @@ offset_right = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ot1a5")
-text = "The Demons are Restless and are tying to break free now that they have killed their sworn enemy... The Doom Guy. Originally holding them back now that he is dead You must step forward equip the armor and go to avenge the Doom Guy and Save Humanity."
+text = "The Demons are Restless and are tying to break free now that they have killed their sworn enemy... Your Partner. Originally holding them back now that he is dead You must step forward equip the armor and go to avenge Your Partner and Save Humanity. But you soon find that the one you fought took your friend's life is not who you thought and was in fact... Someone Different"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

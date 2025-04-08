@@ -58,6 +58,7 @@ offset_right = -72.0
 offset_bottom = 62.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("1_gswoa")
 text = "QUIT"
 
 [node name="Comntrols" type="Label" parent="."]

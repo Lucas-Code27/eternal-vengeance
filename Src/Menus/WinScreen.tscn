@@ -75,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qy5gb")
 text = "YOU DEFEATED BIG GEORGE AND 
-AVENGED DOOM GUY"
+YOUR PARTNER'S SOUL IS AT REST"
 label_settings = SubResource("LabelSettings_3j7fu")
 
 [node name="Button" type="Button" parent="."]

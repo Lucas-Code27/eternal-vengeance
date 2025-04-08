@@ -5,6 +5,8 @@ var cooldown:float
 
 var player:CharacterBody2D
 
+@onready var camera:Camera2D = get_parent().get_node("Camera")
+
 @export var shooter:ShootingComponent2D
 
 @export var followdist:int
@@ -55,3 +57,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	canshoot = true
+
+
+func _on_health_component_hit() -> void:
+	$AnimationPlayer2.play("hit")
+	camera.add_shake(0.1)

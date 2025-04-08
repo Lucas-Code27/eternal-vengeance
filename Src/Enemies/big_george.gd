@@ -7,6 +7,8 @@ extends Area2D
 
 var canshoot:bool = true
 
+@onready var camera:Camera2D = get_parent().get_node("Camera")
+
 func _ready() -> void:
 	$AnimationPlayer.play("george")
 	healthbar.max_value = health.Max_Health
@@ -31,3 +33,11 @@ func _on_timer_timeout() -> void:
 
 func _on_health_component_die() -> void:
 	get_tree().change_scene_to_file("res://Src/Menus/WinScreen.tscn")
+
+
+func _on_health_component_hit() -> void:
+	$AnimationPlayer2.play("hit")
+	camera.add_shake(0.1)
+
+func part() -> void:
+	$CPUParticles2D.emitting = true
