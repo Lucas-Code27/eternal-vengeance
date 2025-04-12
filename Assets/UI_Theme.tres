@@ -1,7 +1,25 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2dihqa4rl4uw"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d2dihqa4rl4uw"]
 
 [ext_resource type="FontFile" uid="uid://bq7daxre3n53c" path="res://Assets/MetalMania-Regular.ttf" id="1_qxbkd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxbkd"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkqhv"]
+bg_color = Color(0.737255, 0.737255, 0.737255, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41rx3"]
+bg_color = Color(0, 0, 0, 0.392157)
 
 [resource]
 default_font = ExtResource("1_qxbkd")
 default_font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_qxbkd")
+Button/styles/hover = SubResource("StyleBoxFlat_kkqhv")
+Button/styles/normal = SubResource("StyleBoxFlat_41rx3")

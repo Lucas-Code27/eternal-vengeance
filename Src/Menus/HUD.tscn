@@ -19,6 +19,17 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_x7x41")
 
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.313726)
+
 [node name="gun" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -26,8 +37,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -87.0
+offset_top = -41.0
+offset_right = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_o8k5v")
@@ -40,8 +52,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -27.0
-offset_right = 400.0
+offset_left = 5.0
+offset_top = -35.0
+offset_right = 405.0
+offset_bottom = -8.0
 grow_vertical = 0
 theme = ExtResource("1_o8k5v")
 theme_override_styles/background = SubResource("StyleBoxFlat_x7x41")

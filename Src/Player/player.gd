@@ -13,6 +13,7 @@ var speed:int = 150
 var canshoot:bool = true
 var canroll:bool = true
 var rolling:bool = false
+var low:bool = false
 
 func _ready() -> void:
 	$AnimationPlayer.play("idle")
@@ -32,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
 	
-	if Input.is_action_just_pressed("Roll") and !rolling:
+	if Input.is_action_just_pressed("Roll") and !rolling and direction:
 		$CPUParticles2D.emitting = true
 		velocity = direction * speed * 4
 		camera.add_shake(0.2)
@@ -75,3 +76,7 @@ func _on_invulnerability_timeout() -> void:
 
 func _on_health_component_hit() -> void:
 	camera.add_shake(2)
+	
+	if health.Health <= 6 and !low:
+		AudioManager.play_sound("low",1.25)
+		low = true

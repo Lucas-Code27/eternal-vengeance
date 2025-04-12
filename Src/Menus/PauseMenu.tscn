@@ -45,7 +45,11 @@ layout_mode = 1
 offset_top = 19.0
 offset_bottom = 19.0
 
+[node name="Close" parent="SettingsMenu/Background" index="4"]
+visible = false
+
 [node name="Quit" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

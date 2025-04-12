@@ -71,6 +71,7 @@ theme = ExtResource("1_ot1a5")
 text = "ACCEPT YOUR MISSION"
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

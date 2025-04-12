@@ -79,6 +79,7 @@ YOUR PARTNER'S SOUL IS AT REST"
 label_settings = SubResource("LabelSettings_3j7fu")
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 531.0
 offset_top = 511.0
@@ -88,6 +89,7 @@ theme = ExtResource("1_qy5gb")
 text = "LEAVE"
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 493.0
 offset_top = 442.0
 offset_right = 653.0
